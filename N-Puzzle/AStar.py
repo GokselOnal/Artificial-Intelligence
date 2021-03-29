@@ -11,21 +11,17 @@ class AStar:
 
     def run(self, target):
         self.queue.put((self.root.step, self.root, int(self.root.UID)))
-        match = False
-        depth = 0
         while self.queue:
             current_state = self.queue.get()[1]
             self.counter += 1
+            if current_state.is_equal(target):
+                return True, self.counter, current_state.step
             if self.visited.get(current_state.UID) is None:
                 self.visited[current_state.UID] = current_state
-                if current_state.is_equal(target):
-                    match = True
-                    depth = current_state.step
-                    break
-            neighbor_nodes = self.graph.reveal_neighbors(current_state)
-            for i in neighbor_nodes:
-                self.queue.put((i.step + self.manhattan_distance(i,target), i, int(i.UID)))
-        return match, self.counter, depth
+                neighbor_nodes = self.graph.reveal_neighbors(current_state)
+                for neighbor in neighbor_nodes:
+                    self.queue.put((neighbor.step + self.manhattan_distance(neighbor,target), neighbor, int(neighbor.UID)))
+        return False, self.counter, 0
 
     def manhattan_distance(self, node, end):
         arr = [0] * (self.graph.size + 1)

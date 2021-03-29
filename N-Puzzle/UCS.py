@@ -11,18 +11,15 @@ class UCS:
         self.queue.put((root.step, root, int(root.UID)))
 
     def run(self, target):
-        match = False
-        depth = 0
         while self.queue:
             current_state = self.queue.get()[1]
             self.counter += 1
             if current_state.is_equal(target):
-                match = True
-                depth = current_state.step
-                break
+                return True, self.counter, current_state.step
             if self.visited.get(current_state.UID) is None:
                 self.visited[current_state.UID] = current_state
             neighbor_nodes = self.graph.reveal_neighbors(current_state)
             for neighbor in neighbor_nodes:
-                self.queue.put((neighbor.step, neighbor, int(neighbor.UID)))
-        return match, self.counter, depth
+                if self.visited.get(neighbor.UID) is None:
+                    self.queue.put((neighbor.step, neighbor, int(neighbor.UID)))
+        return False, self.counter, 0
