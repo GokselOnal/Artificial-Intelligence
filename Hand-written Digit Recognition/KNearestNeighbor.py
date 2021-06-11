@@ -63,7 +63,7 @@ class KNN:
         knn_fit = knn_classifier.fit(self.x_train, self.y_train)
         knn_prediction = knn_fit.predict(self.x_test)
 
-        def confusion_matrix_train(): #with tuned params
+        def confusion_matrix_train(): 
             knn_classifier_train = KNeighborsClassifier()
             knn_fit_train = knn_classifier_train.fit(self.x_train, self.y_train)
             matrix = plot_confusion_matrix(knn_classifier_train, self.x_train, self.y_train, cmap=plt.cm.viridis)
