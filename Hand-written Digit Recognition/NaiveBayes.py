@@ -88,8 +88,7 @@ class NBY:
         plt.ylabel("Accuracy")
         plt.grid()
         plt.show()
-
-        return max(accuracy_list)
+        return (accuracy_list.index(max(accuracy_list)) + 1) /100
 
     def result(self):
         print("NBY")
