@@ -67,7 +67,7 @@ Handwritten digit recognition is one of the most well-known computer vision prob
 ![mnist-300x168 new](https://user-images.githubusercontent.com/73059230/128635114-9fb2c1b9-7da6-44ff-8ffc-c9e23c4f9ab8.png)
 
 ### <i>Algorithms</i>
-  - K-Nearest Neighbors
+  - K-Nearest Neighbor
   - Decision Tree
   - Naive Bayes
 
